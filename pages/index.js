@@ -4,6 +4,7 @@ import fetch from 'isomorphic-unfetch'
 import dayjs from 'dayjs'
 import Result from '../components/result';
 import MCTForm from '../components/MCTForm';
+//import { connectToDatabase } from "../util/mongodb";
 
 const Home = ({data}) => {
   const [results, setResults] = useState(data);
@@ -92,12 +93,29 @@ const Home = ({data}) => {
       </div>
     </div>
   </div>
-)}
+)
 
-Home.getInitialProps = async () => {
+}
+
+ Home.getInitialProps = async () => {
   const res = await fetch('http://localhost:3000/api/daily')
   const json = await res.json()
   return { data: json }
-}
+} 
+
+/*export async function getServerSideProps() {
+  const { db } = await connectToDatabase();
+  const daily= await db
+    .collection("daily")
+    .find({})
+    .sort({ metacritic: -1 })
+    .limit(20)
+    .toArray();
+  return {
+    props: {
+      movies: JSON.parse(JSON.stringify(daily)),
+    },
+  };
+}*/
 
 export default Home

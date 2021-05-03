@@ -1,4 +1,35 @@
-import nextConnect from 'next-connect';
+/* import { connectToDatabase } from "../../util/mongodb";
+
+export default async (req, res) => {
+  const { db } = await connectToDatabase();
+
+  const daily = await db
+    .collection("daily")
+    .find({})
+    .sort({ metacritic: -1 })
+    .limit(20)
+    .toArray();
+
+  res.json(daily);
+};
+
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ import nextConnect from 'next-connect';
 import middleware from '../../middleware/database';
 import {ObjectID} from 'mongodb';
 
@@ -33,4 +64,4 @@ handler.post(async (req, res) => {
     res.json({message: 'ok'});
 })
 
-export default (req, res) => handler.apply(req, res) 
+export default (req, res) => handler.apply(req, res)  
